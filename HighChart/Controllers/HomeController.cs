@@ -171,5 +171,51 @@ namespace HighChart.Controllers
 
             return Json(chartData);
         }
+
+        [HttpGet]
+        public JsonResult GetBubbleChartData()
+        {
+            var chartData = new
+            {
+                title = "نمودار حبابی فروش محصولات",
+                xAxisTitle = "تعداد فروش",
+                yAxisTitle = "میزان درآمد (میلیون تومان)",
+                series = new[]
+                {
+                new
+                {
+                    name = "الکترونیک",
+                    data = new[]
+                    {
+                        new object[] { 10, 20, 15 },  // [x, y, z]
+                        new object[] { 25, 30, 40 },
+                        new object[] { 40, 50, 30 }
+                    }
+                },
+                new
+                {
+                    name = "پوشاک",
+                    data = new[]
+                    {
+                        new object[] { 15, 10, 20 },
+                        new object[] { 20, 25, 35 },
+                        new object[] { 35, 40, 25 }
+                    }
+                },
+                new
+                {
+                    name = "مواد غذایی",
+                    data = new[]
+                    {
+                        new object[] { 5, 15, 10 },
+                        new object[] { 10, 20, 25 },
+                        new object[] { 30, 35, 20 }
+                    }
+                }
+            }
+            };
+
+            return Json(chartData);
+        }
     }
 }
