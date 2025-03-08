@@ -297,5 +297,31 @@ namespace HighChart.Controllers
             return Json(chartData);
         }
 
+        public class HeatmapDataModel
+        {
+            public int X { get; set; }  // 🔹 موقعیت محور X
+            public int Y { get; set; }  // 🔹 موقعیت محور Y
+            public double Value { get; set; }  // 🔹 مقدار رنگ
+        }
+
+         [HttpGet]
+    public JsonResult GetHeatmapData()
+    {
+            var data = new List<List<int>>
+        {
+            new List<int> { 0, 0, 10 }, new List<int> { 0, 1, 19 }, new List<int> { 0, 2, 8 }, new List<int> { 0, 3, 24 }, new List<int> { 0, 4, 67 },
+            new List<int> { 1, 0, 92 }, new List<int> { 1, 1, 58 }, new List<int> { 1, 2, 78 }, new List<int> { 1, 3, 117 }, new List<int> { 1, 4, 48 },
+            new List<int> { 2, 0, 35 }, new List<int> { 2, 1, 15 }, new List<int> { 2, 2, 123 }, new List<int> { 2, 3, 64 }, new List<int> { 2, 4, 52 },
+            new List<int> { 3, 0, 72 }, new List<int> { 3, 1, 132 }, new List<int> { 3, 2, 114 }, new List<int> { 3, 3, 19 }, new List<int> { 3, 4, 16 },
+            new List<int> { 4, 0, 38 }, new List<int> { 4, 1, 5 }, new List<int> { 4, 2, 8 }, new List<int> { 4, 3, 117 }, new List<int> { 4, 4, 115 },
+            new List<int> { 5, 0, 88 }, new List<int> { 5, 1, 32 }, new List<int> { 5, 2, 12 }, new List<int> { 5, 3, 6 }, new List<int> { 5, 4, 120 },
+            new List<int> { 6, 0, 13 }, new List<int> { 6, 1, 44 }, new List<int> { 6, 2, 88 }, new List<int> { 6, 3, 98 }, new List<int> { 6, 4, 96 },
+            new List<int> { 7, 0, 31 }, new List<int> { 7, 1, 1 }, new List<int> { 7, 2, 82 }, new List<int> { 7, 3, 32 }, new List<int> { 7, 4, 30 },
+            new List<int> { 8, 0, 85 }, new List<int> { 8, 1, 97 }, new List<int> { 8, 2, 123 }, new List<int> { 8, 3, 64 }, new List<int> { 8, 4, 84 },
+            new List<int> { 9, 0, 47 }, new List<int> { 9, 1, 114 }, new List<int> { 9, 2, 31 }, new List<int> { 9, 3, 48 }, new List<int> { 9, 4, 91 }
+        };
+
+            return Json(data);
+    }
     }
 }
