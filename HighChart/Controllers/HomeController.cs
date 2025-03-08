@@ -32,9 +32,9 @@ namespace HighChart.Controllers
         {
             return View();
         }
+
         [HttpGet]
-        [HttpGet]
-        public JsonResult GetChartData()
+        public JsonResult GetLineCSVChartData()
         {
             var chartData = new
             {
@@ -49,6 +49,68 @@ namespace HighChart.Controllers
 
                 }
             };
+            return Json(chartData);
+        }
+
+        [HttpGet]
+        public JsonResult GetDrillDownPieChartData()
+        {
+            var chartData = new
+            {
+                title = "فروش محصولات",
+                series = new[]
+                {
+                new
+                {
+                    name = "محصولات",
+                    colorByPoint = true,
+                    data = new[]
+                    {
+                        new { name = "موبایل", y = 40, drilldown = "mobile" },
+                        new { name = "لپ‌تاپ", y = 30, drilldown = "laptop" },
+                        new { name = "لوازم جانبی", y = 20, drilldown = "accessories" },
+                        new { name = "سایر", y = 10 , drilldown = "accessories" } // بدون Drilldown
+                    }
+                }
+            },
+                drilldown = new[]
+                {
+                new
+                {
+                    name = "موبایل",
+                    id = "mobile",
+                    data = new object[]
+                    {
+                        new object[] { "سامسونگ", 20 },
+                        new object[] { "شیائومی", 15 },
+                        new object[] { "اپل", 5 }
+                    }
+                },
+                new
+                {
+                    name = "لپ‌تاپ",
+                    id = "laptop",
+                    data = new object[]
+                    {
+                        new object[] { "ایسوس", 15 },
+                        new object[] { "لنوو", 10 },
+                        new object[] { "دل", 5 }
+                    }
+                },
+                new
+                {
+                    name = "لوازم جانبی",
+                    id = "accessories",
+                    data = new object[]
+                    {
+                        new object[] { "هندزفری", 10 },
+                        new object[] { "کابل شارژ", 5 },
+                        new object[] { "پاوربانک", 5 }
+                    }
+                }
+            }
+            };
+
             return Json(chartData);
         }
     }

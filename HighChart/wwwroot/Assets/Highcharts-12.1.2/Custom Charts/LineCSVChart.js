@@ -1,6 +1,6 @@
 ﻿document.addEventListener('DOMContentLoaded', function () {
-    $.getJSON('/Home/GetChartData', function (data) {
-        Highcharts.chart('chartContainer', {
+    $.getJSON('/Home/GetLineCSVChartData', function (data) {
+        Highcharts.chart('lineCSVchartContainer', {
             chart: { type: 'line' },
             title: { text: data.title, align: 'right' }, // 🔹 دریافت عنوان از کنترلر
             legend: { rtl: true, align: 'right' },
