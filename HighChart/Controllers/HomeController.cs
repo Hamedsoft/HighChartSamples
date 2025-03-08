@@ -217,5 +217,38 @@ namespace HighChart.Controllers
 
             return Json(chartData);
         }
+
+        [HttpGet]
+        public JsonResult GetComboDualAxesChartData()
+        {
+            var chartData = new
+            {
+                title = "فروش و تعداد مشتریان",
+                yAxis1Title = "فروش (میلیون تومان)",
+                yAxis2Title = "تعداد مشتریان",
+                categories = new[] { "فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد", "شهریور" },
+                series = new[]
+                {
+                new
+                {
+                    name = "فروش",
+                    type = "column",    // 🔹 نمایش به صورت ستونی
+                    data = new[] { 50, 70, 60, 80, 90, 100 },
+                    yAxis = 0,           // 🔹 محور اول (چپ)
+                    tooltip = new { valueSuffix = " میلیون تومان" }
+                },
+                new
+                {
+                    name = "مشتریان",
+                    type = "spline",    // 🔹 نمایش به صورت خطی
+                    data = new[] { 200, 240, 220, 280, 300, 320 },
+                    yAxis = 1,           // 🔹 محور دوم (راست)
+                    tooltip = new { valueSuffix = " نفر" }
+                }
+            }
+            };
+
+            return Json(chartData);
+        }
     }
 }
