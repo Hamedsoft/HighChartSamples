@@ -113,5 +113,63 @@ namespace HighChart.Controllers
 
             return Json(chartData);
         }
+
+        [HttpGet]
+        public JsonResult GetPackedBubbleData()
+        {
+            var chartData = new
+            {
+                title = "مقایسه فروش در دسته‌های مختلف",
+                series = new[]
+                {
+                new
+                {
+                    name = "الکترونیک",
+                    data = new[]
+                    {
+                        new { name = "موبایل", value = 40 },
+                        new { name = "لپ‌تاپ", value = 30 },
+                        new { name = "A01", value = 24 },
+                        new { name = "A02", value = 31 },
+                        new { name = "A03", value = 42 },
+                        new { name = "A04", value = 22 },
+                        new { name = "A05", value = 19 },
+                        new { name = "A06", value = 17 },
+                        new { name = "A07", value = 27 },
+                        new { name = "A08", value = 32 },
+                        new { name = "A09", value = 14 },
+                        new { name = "A10", value = 15 },
+                        new { name = "A11", value = 27 },
+                        new { name = "A12", value = 21 },
+                        new { name = "A13", value = 20 },
+                        new { name = "A14", value = 33 },
+                        new { name = "لوازم جانبی", value = 20 }
+                    }
+                },
+                new
+                {
+                    name = "پوشاک",
+                    data = new[]
+                    {
+                        new { name = "تی‌شرت", value = 25 },
+                        new { name = "کفش", value = 15 },
+                        new { name = "شلوار", value = 10 }
+                    }
+                },
+                new
+                {
+                    name = "مواد غذایی",
+                    data = new[]
+                    {
+                        new { name = "میوه", value = 35 },
+                        new { name = "سبزیجات", value = 20 },
+                        new { name = "نوشیدنی", value = 15 }
+                    }
+                }
+            }
+            };
+
+            return Json(chartData);
+        }
     }
 }

@@ -2,7 +2,7 @@
     $.getJSON('/Home/GetDrillDownPieChartData', function (data) {
         Highcharts.chart('PieChart-DrillDownContainer', {
             chart: { type: 'pie' },
-            title: { text: data.title, align: 'right' },
+            title: { text: data.title, align: 'center' },
             legend: { rtl: true, align: 'right' },
             plotOptions: {
                 series: {

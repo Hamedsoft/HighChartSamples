@@ -4,20 +4,33 @@
     <meta charset="UTF-8">
     <title>نمودار از API</title>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-@*--Line Chart-----------------------------------------------------------*@
+    @*--Line Chart-----------------------------------------------------------*@
     <script src="~/assets/highcharts-12.1.2/code/highcharts.js"></script>
     <script src="~/assets/highcharts-12.1.2/code/modules/data.js"></script>
 
-@*--DirllDown Pie Chart-----------------------------------------------------------*@
+    @*--DirllDown Pie Chart-----------------------------------------------------------*@
+    <script src="~/assets/highcharts-12.1.2/code/highcharts.js"></script>
+    <script src="~/assets/highcharts-12.1.2/code/modules/data.js"></script>
     <script src="~/assets/highcharts-12.1.2/code/modules/drilldown.js"></script>
     <script src="~/assets/highcharts-12.1.2/code/modules/export-data.js"></script>
     <script src="~/assets/highcharts-12.1.2/code/modules/accessibility.js"></script>
 
-@*--Custom Chart JS-----------------------------------------------------------*@
+    @*--packed-bubble Chart-----------------------------------------------------------*@
+    <script src="~/assets/highcharts-12.1.2/code/highcharts.js"></script>
+    <script src="~/assets/highcharts-12.1.2/code/highcharts-more.js"></script>
+    <script src="~/assets/highcharts-12.1.2/code/modules/exporting.js"></script>
+    <script src="~/assets/highcharts-12.1.2/code/modules/accessibility.js"></script>
+
+    @*--Custom Chart JS-----------------------------------------------------------*@
     <script src="~/assets/highcharts-12.1.2/custom charts/lineCSVchart.js"></script>
+    <script src="~/assets/highcharts-12.1.2/custom charts/packed-bubble.js"></script>
     <script src="~/assets/highcharts-12.1.2/custom charts/PieChart-DrillDown.js"></script>
-    </head>
+
+</head>
 <body>
+    <div class="row">
+        <div id="packed-bubblechartContainer" style="width:100%; height:400px; direction: rtl;"></div>
+    </div>
     <div class="row">
         <div id="lineCSVchartContainer" style="width:100%; height:400px; direction: rtl;"></div>
     </div>
