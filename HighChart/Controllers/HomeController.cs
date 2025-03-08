@@ -276,5 +276,26 @@ namespace HighChart.Controllers
 
             return Json(chartData);
         }
+
+        [HttpGet]
+        public JsonResult GetGaugeSpeedometerData()
+        {
+            var chartData = new
+            {
+                title = "سرعت خودرو",
+                minValue = 0,
+                maxValue = 220,
+                currentValue = 140, // 🔹 مقدار فعلی سرعت
+                zones = new[]
+                {
+                new { from = 0, to = 80, color = "#55BF3B" },     // 🔹 سبز (ایمن)
+                new { from = 80, to = 160, color = "#DDDF0D" },  // 🔹 زرد (احتیاط)
+                new { from = 160, to = 220, color = "#DF5353" }  // 🔹 قرمز (خطر)
+            }
+            };
+
+            return Json(chartData);
+        }
+
     }
 }
