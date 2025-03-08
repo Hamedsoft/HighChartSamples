@@ -1,46 +1,46 @@
-﻿$(document).ready(function () {
-    $.ajax({
-        url: '/Home/GetHeatmapData', // آدرس اکشن کنترلر
-        type: 'GET',
-        success: function (data) {
-            Highcharts.chart('HeatmapContainer', {
+﻿document.addEventListener("DOMContentLoaded", function () {
+    fetch("/Home/GetHeatmapData") // آدرس متد API را تنظیم کنید
+        .then(response => response.json())
+        .then(data => {
+            console.log("Received Data:", data)
+            const chart = Highcharts.chart('heatmapContainer', {
                 chart: {
-                    type: 'line'
+                    type: 'heatmap',
+                    plotBorderWidth: 1
                 },
                 title: {
-                    text: 'Sales per employee'
+                    text: 'Heatmap Example'
+                },
+                xAxis: {
+                    categories: data.XCategories,  // اصلاح شد
+                    title: { text: 'Names' }
+                },
+                yAxis: {
+                    categories: data.YCategories,  // اصلاح شد
+                    title: { text: 'Days' }
+                },
+                colorAxis: {
+                    min: 0,
+                    minColor: '#FFFFFF',
+                    maxColor: Highcharts.getOptions().colors[0]
                 },
                 series: [{
-                    name: 'Sales per employee',
+                    name: 'Sales Data',
                     borderWidth: 1,
-                    data: data,
+                    data: data.DataPoints.map(d => [d.x, d.y, d.value]), // اصلاح شد
                     dataLabels: {
                         enabled: true,
                         color: '#000000'
                     }
                 }],
-                yAxis: {
-                    title: {
-                        text: 'Sales'
+                tooltip: {
+                    formatter: function () {
+                        return `<b>${data.XCategories[this.point.x]}</b> - 
+                        <b>${data.YCategories[this.point.y]}</b>: 
+                        <b>${this.point.value}</b>`;
                     }
-                },
-                responsive: {
-                    rules: [{
-                        condition: {
-                            maxWidth: 500
-                        },
-                        chartOptions: {
-                            yAxis: {
-                                labels: {
-                                    formatter: function () {
-                                        return this.value.toFixed(1);
-                                    }
-                                }
-                            }
-                        }
-                    }]
                 }
             });
-        }
-    });
+        })
+        .catch(error => console.error('Error loading heatmap data:', error));
 });

@@ -1,5 +1,6 @@
 ﻿using HighChart.Models;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System.Diagnostics;
 
 namespace HighChart.Controllers
@@ -299,29 +300,82 @@ namespace HighChart.Controllers
 
         public class HeatmapDataModel
         {
-            public int X { get; set; }  // 🔹 موقعیت محور X
-            public int Y { get; set; }  // 🔹 موقعیت محور Y
-            public double Value { get; set; }  // 🔹 مقدار رنگ
+            public int x { get; set; } // ایندکس در محور X
+            public int y { get; set; } // ایندکس در محور Y
+            public int value { get; set; } // مقدار فروش
         }
 
-         [HttpGet]
-    public JsonResult GetHeatmapData()
-    {
-            var data = new List<List<int>>
+        [HttpGet]
+        public IActionResult GetHeatmapData()
         {
-            new List<int> { 0, 0, 10 }, new List<int> { 0, 1, 19 }, new List<int> { 0, 2, 8 }, new List<int> { 0, 3, 24 }, new List<int> { 0, 4, 67 },
-            new List<int> { 1, 0, 92 }, new List<int> { 1, 1, 58 }, new List<int> { 1, 2, 78 }, new List<int> { 1, 3, 117 }, new List<int> { 1, 4, 48 },
-            new List<int> { 2, 0, 35 }, new List<int> { 2, 1, 15 }, new List<int> { 2, 2, 123 }, new List<int> { 2, 3, 64 }, new List<int> { 2, 4, 52 },
-            new List<int> { 3, 0, 72 }, new List<int> { 3, 1, 132 }, new List<int> { 3, 2, 114 }, new List<int> { 3, 3, 19 }, new List<int> { 3, 4, 16 },
-            new List<int> { 4, 0, 38 }, new List<int> { 4, 1, 5 }, new List<int> { 4, 2, 8 }, new List<int> { 4, 3, 117 }, new List<int> { 4, 4, 115 },
-            new List<int> { 5, 0, 88 }, new List<int> { 5, 1, 32 }, new List<int> { 5, 2, 12 }, new List<int> { 5, 3, 6 }, new List<int> { 5, 4, 120 },
-            new List<int> { 6, 0, 13 }, new List<int> { 6, 1, 44 }, new List<int> { 6, 2, 88 }, new List<int> { 6, 3, 98 }, new List<int> { 6, 4, 96 },
-            new List<int> { 7, 0, 31 }, new List<int> { 7, 1, 1 }, new List<int> { 7, 2, 82 }, new List<int> { 7, 3, 32 }, new List<int> { 7, 4, 30 },
-            new List<int> { 8, 0, 85 }, new List<int> { 8, 1, 97 }, new List<int> { 8, 2, 123 }, new List<int> { 8, 3, 64 }, new List<int> { 8, 4, 84 },
-            new List<int> { 9, 0, 47 }, new List<int> { 9, 1, 114 }, new List<int> { 9, 2, 31 }, new List<int> { 9, 3, 48 }, new List<int> { 9, 4, 91 }
-        };
+            var data = new
+            {
+                XCategories = new string[] { "Alexander", "Marie", "Maximilian", "Sophia", "Lukas", "Maria", "Leon", "Anna", "Tim", "Laura" },
+                YCategories = new string[] { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday" },
+                DataPoints = new List<HeatmapDataModel>
+                {
+                    new HeatmapDataModel { x = 0, y = 0, value = 10 },
+                    new HeatmapDataModel { x = 0, y = 1, value = 19 },
+                    new HeatmapDataModel { x = 0, y = 2, value = 8 },
+                    new HeatmapDataModel { x = 0, y = 3, value = 24 },
+                    new HeatmapDataModel { x = 0, y = 4, value = 67 },
 
+                    new HeatmapDataModel { x = 1, y = 0, value = 92 },
+                    new HeatmapDataModel { x = 1, y = 1, value = 58 },
+                    new HeatmapDataModel { x = 1, y = 2, value = 78 },
+                    new HeatmapDataModel { x = 1, y = 3, value = 117 },
+                    new HeatmapDataModel { x = 1, y = 4, value = 48 },
+
+                    new HeatmapDataModel { x = 2, y = 0, value = 35 },
+                    new HeatmapDataModel { x = 2, y = 1, value = 15 },
+                    new HeatmapDataModel { x = 2, y = 2, value = 123 },
+                    new HeatmapDataModel { x = 2, y = 3, value = 64 },
+                    new HeatmapDataModel { x = 2, y = 4, value = 52 },
+
+                    new HeatmapDataModel { x = 3, y = 0, value = 72 },
+                    new HeatmapDataModel { x = 3, y = 1, value = 132 },
+                    new HeatmapDataModel { x = 3, y = 2, value = 114 },
+                    new HeatmapDataModel { x = 3, y = 3, value = 19 },
+                    new HeatmapDataModel { x = 3, y = 4, value = 16 },
+
+                    new HeatmapDataModel { x = 4, y = 0, value = 38 },
+                    new HeatmapDataModel { x = 4, y = 1, value = 5 },
+                    new HeatmapDataModel { x = 4, y = 2, value = 8 },
+                    new HeatmapDataModel { x = 4, y = 3, value = 117 },
+                    new HeatmapDataModel { x = 4, y = 4, value = 115 },
+
+                    new HeatmapDataModel { x = 5, y = 0, value = 88 },
+                    new HeatmapDataModel { x = 5, y = 1, value = 32 },
+                    new HeatmapDataModel { x = 5, y = 2, value = 12 },
+                    new HeatmapDataModel { x = 5, y = 3, value = 6 },
+                    new HeatmapDataModel { x = 6, y = 4, value = 120 },
+
+                    new HeatmapDataModel { x = 6, y = 0, value = 13 },
+                    new HeatmapDataModel { x = 6, y = 1, value = 44 },
+                    new HeatmapDataModel { x = 6, y = 2, value = 88 },
+                    new HeatmapDataModel { x = 6, y = 3, value = 98 },
+                    new HeatmapDataModel { x = 6, y = 4, value = 96 },
+
+                    new HeatmapDataModel { x = 7, y = 0, value = 31 },
+                    new HeatmapDataModel { x = 7, y = 1, value = 1 },
+                    new HeatmapDataModel { x = 7, y = 2, value = 82 },
+                    new HeatmapDataModel { x = 7, y = 3, value = 32 },
+                    new HeatmapDataModel { x = 7, y = 4, value = 30 },
+
+                    new HeatmapDataModel { x = 8, y = 0, value = 85 },
+                    new HeatmapDataModel { x = 8, y = 1, value = 97 },
+                    new HeatmapDataModel { x = 8, y = 2, value = 123 },
+                    new HeatmapDataModel { x = 8, y = 3, value = 64 },
+                    new HeatmapDataModel { x = 8, y = 4, value = 84 },
+
+                    new HeatmapDataModel { x = 9, y = 0, value = 47 },
+                    new HeatmapDataModel { x = 9, y = 1, value = 114 },
+                    new HeatmapDataModel { x = 9, y = 2, value = 31 },
+                    new HeatmapDataModel { x = 9, y = 3, value = 48 },
+                    new HeatmapDataModel { x = 9, y = 4, value = 91 },
+                }
+            };
             return Json(data);
-    }
+        }
     }
 }
