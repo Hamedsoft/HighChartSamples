@@ -250,5 +250,31 @@ namespace HighChart.Controllers
 
             return Json(chartData);
         }
+
+        [HttpGet]
+        public JsonResult GetBasicColumnChartData()
+        {
+            var chartData = new
+            {
+                title = "عملکرد فروش ماهانه",
+                xAxisCategories = new[] { "فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد", "شهریور" },
+                yAxisTitle = "فروش (میلیون تومان)",
+                series = new[]
+                {
+                new
+                {
+                    name = "فروش سال 1401",
+                    data = new[] { 50, 70, 60, 80, 90, 100 }
+                },
+                new
+                {
+                    name = "فروش سال 1402",
+                    data = new[] { 65, 85, 75, 95, 105, 110 }
+                }
+            }
+            };
+
+            return Json(chartData);
+        }
     }
 }
